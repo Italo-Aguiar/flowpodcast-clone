@@ -1,13 +1,15 @@
-// import Link from 'next/link'
+import Link from 'next/link'
+import Layout from '../components/Layout'
 
 const IndexPage = () => (
-  <>
-    <div className="py-20">
-      <h1 className="text-5xl text-center">
-        Next.js + Tailwind CSS 2.0
-      </h1>
-    </div>
-  </>
+  <Layout title="Home | Next.js + TypeScript Example">
+    <h1 className="text-5xl text-center">Hello Next.js 👋</h1>
+    <p>
+      <Link href="/about">
+        <a>About</a>
+      </Link>
+    </p>
+  </Layout>
 )
 
 export default IndexPage

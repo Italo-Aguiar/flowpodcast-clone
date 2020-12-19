@@ -1,15 +1,15 @@
 module.exports = {
   purge: ['./src/pages/**/*.{js, ts, jsx, tsx}', './src/components/**/*.{js, ts, jsx, tsx}'],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
-        'primary': '#ffc107',
-        'secondary': '#212529',
+        flow: '#131c25'
       }
-    }
-  }
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
 }
