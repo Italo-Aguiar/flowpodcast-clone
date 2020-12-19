@@ -2,9 +2,4 @@
 
 @tailwind components;
 
-html,
-body {
-  @apply bg-flow text-white;
-}
-
 @tailwind utilities;
