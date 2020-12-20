@@ -10,8 +10,8 @@ interface LoginModalProps {
 const LoginModal = ({ show, closeModal }: LoginModalProps) => {
   const showHideClassName = show ? '' : 'hidden'
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
   const [termos, setTermos] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
 
@@ -49,7 +49,7 @@ const LoginModal = ({ show, closeModal }: LoginModalProps) => {
                 <p className="text-gray-500">Comece com seu endereço de e-mail!</p>
                 <input name="username" type="email" placeholder="Digite o seu e-mail" className="text-center text-sm m-1 py-2 px-19 border-1 border-secondary"/>
                 <div className="mt-2 mb-12">
-                  <input type="checkbox"/>
+                  <input type="checkbox" onChange={(e) => setTermos(e.target.checked)} checked={termos}/>
                   <span className="text-gray-600 text-xs ml-2">Concordo com os <a href="/politicas/termos-de-uso" target="_blank" className="font-bold">TERMOS DE SERVIÇO</a></span>
                 </div>
                 <button className={`text-black ${termos ? 'bg-secondary': 'bg-gray-500'} mx-1 py-1 rounded`} disabled={!termos} type="submit">CADASTRAR</button>
