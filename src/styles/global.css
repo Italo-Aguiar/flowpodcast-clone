@@ -4,7 +4,10 @@
 
 html,
 body {
-  @apply bg-flow text-white;
+  @apply bg-primary text-white h-screen w-screen;
 }
 
+* {
+  @apply font-flow;
+}
 @tailwind utilities;
