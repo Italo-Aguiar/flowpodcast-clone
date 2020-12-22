@@ -1,4 +1,4 @@
-import React from 'react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -7,7 +7,7 @@ interface ActiveLinkProps {
   as?: string
 }
 
-const ActiveLink: React.FC<ActiveLinkProps> = ({ children, href, ...props }) => {
+const ActiveLink: NextPage<ActiveLinkProps> = ({ children, href, ...props }) => {
   const { asPath } = useRouter();
   const className = asPath === href || asPath === props?.as 
     ? 'transition duration-200 ease-in-out hover:text-secondary border-b-2 border-secondary text-xs px-11.5 py-4'

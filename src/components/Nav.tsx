@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { NextPage } from 'next';
 import { HiUserCircle } from 'react-icons/hi';
 import ActiveLink from './ActiveLink';
 import Link from 'next/link';
 import Image from 'next/image';
 import LoginModal from './LoginModal';
 
-const Nav = () => {
+const Nav: NextPage = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   const showModal = () => {
@@ -13,7 +14,6 @@ const Nav = () => {
   }
 
   const hideModal = () => {
-    console.log('vrau')
     setShowLogin(false);
   }
 

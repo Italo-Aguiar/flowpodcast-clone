@@ -1,10 +1,30 @@
-// You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import User from 'path/to/interfaces';
+export interface ValidatorResponse extends ObjectIndex {
+  valid: boolean
+  message: string
+}
 
-export type User = {
-  id: number
-  name: string
+export interface ObjectIndex {
+  [key:string]: any
+}
+
+export interface Episode {
+  mp3: string
+  updated_at: string
+  bytes: number
+  cover: string
+  feed: {
+    google: string
+    apple: string
+    youtube: string
+    deezer: string
+    amazon: string
+    spotify: string
+  }
+  status: boolean
+  created_at: string
+  id: string
+  duration: string
+  description: string
+  artwork: string
+  title: string
 }
