@@ -1,6 +1,7 @@
 import React from 'react';
 import { EpisodeProps } from '../../interfaces';
-import { FaYoutube, FaSpotify, FaAmazon, FaApple, } from 'react-icons/fa';
+// import { FaYoutube, FaHeadphones, FaSpotify, FaAmazon, FaGoogle, FaApple } from 'react-icons/fa';
+// import { SiDeezer } from 'react-icons/si';
 
 interface Props {
   data: EpisodeProps
@@ -15,8 +16,8 @@ const Episode: React.FC<Props> = ({ data }) => {
         <h2 className="font-bold text-sm">{data.title}</h2>
         <p className="text-sm">{data.description}</p>
       </div>
-      <div className="w-full py-5">
-
+      <div className="text-center w-full py-5 px-5">
+        {/* <div className="flex justify-center"><button className="w-full"><FaYoutube className="m-auto" /> YouTube</button></div> */}
       </div>
     </div>
   );
