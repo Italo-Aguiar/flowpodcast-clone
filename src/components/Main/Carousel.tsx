@@ -1,11 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import { BiChevronRightCircle, BiChevronLeftCircle } from 'react-icons/bi';
 
-let timeOut: NodeJS.Timeout;
 
 const Carousel: React.FC = () => {
   const imageUrls = ['https://carousel-flow.s3-sa-east-1.amazonaws.com/especial_2_anos.jpg', 'https://carousel-flow.s3-sa-east-1.amazonaws.com/dia_dos_pais.jpg', 'https://carousel-flow.s3-sa-east-1.amazonaws.com/caue.jpg']
   const [currentImage, setCurrentImage] = useState(imageUrls[0])
+  let timeOut: NodeJS.Timeout;
 
   const nextImage = () => {
     const index = imageUrls.indexOf(currentImage)
@@ -28,10 +28,8 @@ const Carousel: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log('entrou??')
     timeOut = setInterval(() => nextImage(), 3000);
     return () => {
-      console.log('saiu')
       clearInterval(timeOut);
     }
   }, [])

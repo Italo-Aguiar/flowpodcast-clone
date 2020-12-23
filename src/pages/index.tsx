@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Link from 'next/link';
 import axios from 'axios';
 import Layout from '../components/Layout';
 import Carousel from '../components/Main/Carousel';
@@ -24,7 +25,7 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
   return (
     <Layout title="Flow Podcast - A melhor conversa que você vai ouvir.">
       <Carousel />
-      <div className="flex flex-col font-flow justify-center align-center text-center my-10">
+      <div className="flex flex-col font-flow justify-center align-center text-center my-10  overflow-x-visible">
         <h3 className="w-3/5 text-center font-medium mx-auto mb-8 text-lg">Flow Podcast é uma conversa descontraída, longa e livre, como um papo de boteco entre amigos. No Flow garantimos um espaço onde o convidado pode desenvolver suas ideias sem qualquer tipo de pauta ou as restrições normais de outras mídias, como agenda política/filosófica.</h3>
         <h1 className="text-5xl font-black">DE SEGUNDA A SEXTA ÀS 20H</h1>
         <h4 className="font-thin text-xl my-2">(às vezes o horário muda, quase sempre atrasa)</h4>
@@ -53,14 +54,19 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
         <h1 className="font-bold text-3xl mt-10">Quem já passou por aqui</h1>
         <h2 className="font-light text-lg">OUÇA NOSSOS EPISÓDIOS</h2>
 
-        <div className="grid gap-14 grid-cols-3 my-10 mx-10">
+        <div className="grid gap-14 grid-cols-3 my-10 mx-12">
           { 
             episodes.map(episode => {
-              return <Episode data={episode}/>
+              return <Episode key={episode.id} data={episode}/>
             })
           }
         </div>
 
+        <div className="flex justify-center">
+          <Link href="/episodios">
+            <a className="py-2 px-3 rounded border-1 border-secondary text-secondary">VER TODOS</a>
+          </Link>
+        </div>
       </div>
     </Layout>
   )
@@ -69,11 +75,16 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
 
 
 IndexPage.getInitialProps = async (_) => {
-  return axios.post(`${process.env.FLOW_API}/episodes/list`, {
+  return axios.post(`${process.env.flow_api}/episodes/list`, {
     params: {
       filter: 'landing'
     }
-  }).then(response => response.data)
+  })
+    .then(response => response.data)
+    .catch(err => {
+      console.log(err.response.data)
+      return { episodes: []}
+    });   
 }
 
 export default IndexPage

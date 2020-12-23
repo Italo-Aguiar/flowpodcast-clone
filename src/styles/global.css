@@ -31,4 +31,12 @@ input {
   @apply flex w-10 h-10 bg-secondary rounded-full;
 }
 
+.btn-feed {
+  @apply flex justify-center rounded w-full bg-secondary py-2 mb-2;
+}
+
+.icon-feed {
+  @apply my-auto mr-4;
+}
+
 @tailwind utilities;

@@ -21,7 +21,7 @@ const Nav: NextPage = () => {
     <>
       <nav className="flex justify-between bg-black h-26">
         <div className="flex items-center">
-          <Link href="/">
+          <Link href="/" prefetch>
             <div className="mx-4 pt-2">
               <Image src="/logo-flow.png" alt="Flow Podcast" width="140" height="77.6" />
             </div>
