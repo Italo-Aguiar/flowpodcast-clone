@@ -7,7 +7,7 @@ export interface ObjectIndex {
   [key:string]: any
 }
 
-export interface Episode {
+export interface EpisodeProps {
   mp3: string
   updated_at: string
   bytes: number

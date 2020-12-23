@@ -2,17 +2,25 @@ import { NextPage } from 'next';
 import axios from 'axios';
 import Layout from '../components/Layout';
 import Carousel from '../components/Main/Carousel';
-import { Episode } from '../interfaces';
+import Episode from '../components/Main/Episode';
+import { EpisodeProps } from '../interfaces';
 import { FaYoutube, FaTwitch, FaSpotify, FaAmazon, FaApple, FaDiscord, FaRss } from 'react-icons/fa';
 
 interface IndexProps {
-  episodes: Episode[]
+  episodes: EpisodeProps[]
+  status?: {
+    error: boolean
+    message: string
+    reason: any
+  }
+  paging?: {
+    previous: any
+    next: string
+  }
 }
 
 
 const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
-  
-
   return (
     <Layout title="Flow Podcast - A melhor conversa que você vai ouvir.">
       <Carousel />
@@ -29,13 +37,13 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
         </div>
 
         <div className="flex justify-between w-1/5 mx-auto mb-10">
-          <div className="circle-small"><FaYoutube className="m-auto" size="25px"/></div>
-          <div className="circle-small"><FaTwitch className="m-auto" size="25px"/></div>
-          <div className="circle-small"><FaSpotify className="m-auto" size="25px"/></div>
-          <div className="circle-small"><FaAmazon className="m-auto" size="25px"/></div>
-          <div className="circle-small"><FaApple className="m-auto" size="25px"/></div>
-          <div className="circle-small"><FaDiscord className="m-auto" size="25px"/></div>
-          <div className="circle-small"><FaRss className="m-auto" size="25px"/></div>
+          <a href="https://www.youtube.com/flowpodcast" target="_blank" className="circle-small"><FaYoutube className="m-auto" size="25px"/></a>
+          <a href="https://www.twitch.tv/flowpodcast" target="_blank" className="circle-small"><FaTwitch className="m-auto" size="25px"/></a>
+          <a href="https://open.spotify.com/show/3V5LBozjo4vNg2oJoA4Wb2" target="_blank" className="circle-small"><FaSpotify className="m-auto" size="25px"/></a>
+          <a href="https://music.amazon.com.br/podcasts/798430f9-809d-4ee8-b371-6a8875e5f765/Flow-Podcast" target="_blank" className="circle-small"><FaAmazon className="m-auto" size="25px"/></a>
+          <a href="https://podcasts.apple.com/br/podcast/flow-podcast/id1466327128" target="_blank" className="circle-small"><FaApple className="m-auto" size="25px"/></a>
+          <a href="https://discord.gg/Fuj5p4d" target="_blank" className="circle-small"><FaDiscord className="m-auto" size="25px"/></a>
+          <a href="https://rss-feed-flowpodcast-2eqj3fl3la-ue.a.run.app/feed/rss" target="_blank" className="circle-small"><FaRss className="m-auto" size="25px"/></a>
         </div>
 
         <h3 className="font-thin text-lg mb-6">NÃO É UMA ENTREVISTA!</h3>
@@ -44,6 +52,15 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
 
         <h1 className="font-bold text-3xl mt-10">Quem já passou por aqui</h1>
         <h2 className="font-light text-lg">OUÇA NOSSOS EPISÓDIOS</h2>
+
+        <div className="grid gap-5 gri-cols-3 grid-flow-row mt-10">
+          { 
+            episodes.map(episode => {
+              return <Episode data={episode}/>
+            })
+          }
+        </div>
+
       </div>
     </Layout>
   )
@@ -51,14 +68,12 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
   
 
 
-IndexPage.getInitialProps = async (_) => {
-  const response = await axios.post('https://flow3r-api-master-2eqj3fl3la-ue.a.run.app/v2/episodes/list', {
+IndexPage.getInitialProps = async (ctx) => {
+  return axios.post(`${process.env.FLOW_API}/episodes/list`, {
     params: {
       filter: 'landing'
     }
-  })
-
-  return response.data;
+  }).then(response => response.data)
 }
 
 export default IndexPage
