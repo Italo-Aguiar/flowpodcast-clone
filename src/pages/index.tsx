@@ -53,7 +53,7 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
         <h1 className="font-bold text-3xl mt-10">Quem já passou por aqui</h1>
         <h2 className="font-light text-lg">OUÇA NOSSOS EPISÓDIOS</h2>
 
-        <div className="grid gap-5 gri-cols-3 grid-flow-row mt-10">
+        <div className="grid gap-14 grid-cols-3 my-10 mx-10">
           { 
             episodes.map(episode => {
               return <Episode data={episode}/>
@@ -68,7 +68,7 @@ const IndexPage: NextPage<IndexProps> = ({ episodes }) => {
   
 
 
-IndexPage.getInitialProps = async (ctx) => {
+IndexPage.getInitialProps = async (_) => {
   return axios.post(`${process.env.FLOW_API}/episodes/list`, {
     params: {
       filter: 'landing'
