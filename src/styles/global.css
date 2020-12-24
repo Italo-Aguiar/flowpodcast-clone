@@ -1,10 +1,9 @@
 @tailwind base;
-
 @tailwind components;
 
 html,
 body {
-  @apply bg-primary text-white h-screen w-screen;
+  @apply bg-primary text-white h-screen w-screen max-w-full overflow-x-hidden;
 }
 
 * {
@@ -37,6 +36,10 @@ input {
 
 .icon-feed {
   @apply my-auto mr-4;
+}
+
+.plans-container {
+  @apply shadow rounded border-1 border-black hover:border-white flex flex-col justify-center mx-auto px-10 py-5;
 }
 
 @tailwind utilities;

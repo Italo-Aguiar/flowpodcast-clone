@@ -28,3 +28,26 @@ export interface EpisodeProps {
   artwork: string
   title: string
 }
+
+export interface RewardItem {
+  available: boolean
+  type: string
+  description: string
+  modal?: string
+}
+
+export interface Reward {
+  items: RewardItem[]
+  type: string
+}
+
+export interface PlanProps {
+  updated_at: string
+  name: string
+  frequency: string
+  planId: string
+  rewards: Reward[]
+  amount: number
+  created_at: string
+  id: string
+}
